@@ -1,3 +1,3 @@
-# python_pratice
-//programming homework
-//简单的编程练习
+# 编程练习
+---------------------
+> 一些乱七八糟的代码和笔记

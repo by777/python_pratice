@@ -1,0 +1,186 @@
+﻿{% extends "blog/include.html" %}
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<head>
+	<title>Edit - 白七的博客</title>
+  {% block head %}
+	<link rel="stylesheet" type="text/css" href="{%static 'semantic.css'%}" >
+	<link href="{%static 'favicon.icon'%}" rel="shortcut icon">
+
+	<link rel="stylesheet" type="text/css" href="{%static 'dist/components/input.css' %}"> 
+  <link rel="stylesheet" type="text/css" href="{%static 'dist/components/label.css' %}">
+  <link rel="stylesheet" type="text/css" href="{%static 'dist/components/dropdown.css' %}">
+  <link rel="stylesheet" type="text/css" href="{%static 'dist/components/transition.css' %}">
+  <!--- Component JS -->
+  <script src="{%static 'jquery.min.js' %}"></script>
+  <script type="text/javascript" src="{%static 'dist/components/dropdown.js' %}"></script>
+  <script type="text/javascript" src="{%static 'dist/components/transition.js' %}"></script>
+	
+	
+
+	<script charset="utf-8" src="{%static 'kindeditor-all.js'%}"></script>
+	
+	<script>
+
+
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id', { cssPath: '{%static 'simple.css'%}', allowFileManager: true, resizeType:0 }); 
+                KindEditor.options.filterMode = false;
+       
+        
+      
+       
+});
+       
+
+
+
+
+</script>
+ <script>
+  $(document)
+    .ready(function() {
+      $('.ui.dropdown')
+        .dropdown({
+          on: 'click'
+        })
+      ;
+    })
+  ;
+  </script>
+ <style>
+  body {
+    padding: 1em;
+  }
+  .ui.input + .ui.input {
+    margin-left: 1em;
+  }
+  </style>
+{% endblock %}
+</head>
+<body>{% block mainbody %}
+<!-- 
+<div class="ui image sixteen wide column">
+<div class="sixteen wide column"> -->
+
+<h3 class="ui container block segment">
+       <i class="settings icon"></i>
+       编辑文章：{{article.title|default:'新建'}}
+</h3>
+
+
+<div class="ui vertical  container segment">
+  <i>最后由bai7, 编辑于{{article.pub_time}}</i>
+</div>
+	
+<form method="post" action="{% url 'blog:edit_action'  %}" >
+<div class="ui vertical segment">
+		<div class="ui container segment"><p>请输入标题：</p>
+
+			<h4 class="ui  header">
+
+        <div class="ui input"> 
+          <input  type="text" name= "title" value="{{article.title|default:'TITLE'}}" class="ui transparent  />
+    
+        </div>
+
+      </h4>
+		
+    </div>
+
+
+
+  <div class="ui container segment">	</div>
+		
+</div>
+<div class="ui vertical  container segment">
+
+
+<div class="ui right labeled input">
+       
+     
+      <select class="ui dropdown label" name="tag1">
+
+
+      
+        	<div class="text">Dropdown</div>
+        	<i class="dropdown icon"></i>
+        	<div class="menu">
+        	{%for tag in tags_new %}
+          		<option class="item">{{tag}}</option>
+          	{%endfor%}	
+       		
+       		</div>
+	
+
+      </select>
+      <input  value = "新建标签" type="text" name = 'tag2'> 
+</div>
+
+
+</div>
+<div class="ui container segment">
+	<p>请输入修改内容：</p>
+</div>
+	<!-- <div class="ui vertical container segment"> -->
+	<!-- 	<div class="ui inverted vertical horizontal divider">112</div>  -->
+    	<!-- <div class="ui transparent icon input>12</div> -->
+    		
+    	<!-- <div class="ui input"> -->
+      <div class="ui container vertical segment"> 
+			<textarea id="editor_id" name="content" cols="158" rows="50" align="right" >
+				{{article.content|safe}}
+			</textarea>
+		</div> 
+
+
+
+
+	<!-- </div> -->
+
+<!-- </div> -->
+<input type="hidden" name="article_id" value="{{article.id|default:'0'}}">
+
+
+
+<!-- <div class=" vertical very padded segment">
+
+123
+	
+	
+</div> -->
+
+
+
+
+
+
+<!-- <textarea name="content" cols="150" rows="50">{{article.content}}</textarea> -->
+
+
+
+
+
+{% csrf_token %} 
+<div class="ui container segment">
+ <input type ="submit" value="提交" class="ui blue inverted submit  button"/>
+
+
+</form>
+<!-- 当使用POST请求时必须添加 {% csrf_token %} 防范CSRF攻击伪造<p>
+Django的模板中如果使用了不存在的变量，是不会报错的，只会给一个空字符串<p>
+<p>但是新建文章的时候是要传递一个‘0’，如果传递一个空字符串回去，是会报错的：
+ValueError at /blog/edit_action<br/>
+
+invalid literal for int() with base 10: ''<br/>
+使用value|default:??过滤器可以设置缺省值 -->
+
+
+</div><!-- </div></div> -->
+
+{% endblock %}
+
+{% block log %}{{boo_login}}{% endblock %}
+</body>
+</html>

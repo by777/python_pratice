@@ -1,0 +1,215 @@
+{% extends "blog/include.html" %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    
+    {%load staticfiles%}
+    <meta content="#ffffff" name="theme-color" />
+    <title>Semantic-UI-Forest, collection of design, themes and templates for Semantic-UI.</title>
+    <link href="{%static 'dist/semantic-ui/semantic.min.css'%}" rel="stylesheet" type="text/css" />
+    <link href="{%static 'stylesheets/default.css'%}" rel="stylesheet" type="text/css" />
+
+
+    <link href="{%static 'stylesheets/pandoc-code-highlight.css'%}" rel="stylesheet" type="text/css" />
+    <script src="{%static 'dist/jquery/jquery.min.js'%}"></script>
+  </head>
+  <body>
+    
+
+
+
+
+
+
+
+
+   <body>{% block mainbody %}
+   
+    <div class="ui stackable grid container">
+      
+        <div class="thirteen wide column">
+         
+          <div class="ui hidden section divider"></div>
+          <div class="ui stackable grid">
+            <div class="three column row">
+            {%for article in articles%}
+             
+              <div class="column">
+                <div class="ui  small header">
+                  <a href="{%url  'blog:article_page' article.id %}" > 
+                    <div class="ui checkbox">
+                      <input type="checkbox" name="del_article" value="{{article.id}}">
+                      <label>{{article.title}}</label>
+                    </div> 
+                  </a>
+                  <div class="ui divider"></div>
+                </div>
+                <p ><i class="icon tag"></i>{{article.tag}}</p>
+                <p>
+                  {{article.content|striptags|truncatechars:"150" }}
+                </p>
+                <div class="ui small basic button">
+                  <a href="{%url  'blog:article_page' article.id %}" > View detailes &raquo;</a>
+                </div>
+                <div class="ui hidden divider"></div>
+              </div>
+              <div class="ui hidden divider"></div>
+              
+            
+             
+             {%endfor%} 
+            </div>
+            
+          </div>
+          
+          <!-- <div class="ui divider"></div> -->
+        <!--   <footer>
+            &copy; bai7
+
+          </footer> -->
+        </div>
+
+
+
+        <div class="three wide column computer only ">
+          <div class="ui vertical menu">
+            <a class="active item"><i class="add to calendar icon"></i>NOTES</a>
+            <a class="item"></a>
+            <a class="item">Link</a>
+            <a class="item">Link</a>
+            <a class="item">Link</a>
+            <a class="item">Link</a>
+            <a class="item">Link</a>
+            <a class="item">Link</a>
+            <a class="item">Link</a>
+            <a class="item">Link</a>
+            <a class="item">Link</a>
+            <a class="item">Link</a>
+            <a class="item"></a>
+          </div>
+        </div>
+      
+      
+          </div>
+        </div>
+        
+      </div>
+    </div><div class="ui vertical  inverted segment " align="center">
+  
+      <div class="ui vertical  inverted text menu">
+        <div class="item">
+          <h5 class="ui inverted header" >COPYRIGHT© BAIQI 2017-2017</h5>
+        </div>
+        
+
+
+
+    
+  
+
+</div>
+
+{% endblock %}
+
+{% block log %}{{boo_login}}{% endblock %}
+
+    
+    <script src="{%static 'dist/semantic-ui/semantic.min.js'%}"></script>
+    <style type="text/css">
+      .three.wide.column > .ui.vertical.menu,
+      .ui.right.sidebar.vertical.menu {
+        height: 520px !important;
+        border-radius: 4px !important;
+      }
+      .three.wide.column > .ui.vertical.menu > a.item,
+      .ui.right.sidebar.vertical.menu > a.item {
+        color: #337ab7;
+      }
+      .three.wide.column > .ui.vertical.menu > a.item.active,
+      .ui.right.sidebar.vertical.menu > a.item.active {
+        background-color: #337ab7;
+        color: white;
+        border: none !important;
+      }
+      .three.wide.column > .ui.vertical.menu > a.item:hover,
+      .ui.right.sidebar.vertical.menu > a.item:hover {
+        background-color: #4f93ce;
+        color: white;
+      }
+      
+      /*.ui.grid > .computer.only.row > .column {
+        margin-top: 4em;
+      }
+      
+      .three.wide.column > .ui.vertical.menu {
+        margin-top: 1.5em;
+      }
+      
+      .ui.right.sidebar.vertical.menu {
+        margin-top: 6em !important;
+      }
+      
+      .tablet.mobile.only.row .ui.container {
+        padding-top: 4em !important;
+      }
+      
+      .ui.fixed.borderless.menu .row > a.header.item {
+        font-size: 1.2em;
+      }
+      .ui.fixed.borderless.menu .ui.vertical.menu {
+        display: none;
+        border: none;
+        box-shadow: none;
+      }
+      .ui.fixed.borderless.menu .ui.vertical.menu > .item {
+        padding-left: 1.428em;
+      }
+      
+      .ui.message {
+        background-color: rga(238, 238, 238);
+        box-shadow: none;
+        padding: 5em 4em;
+        margin-top: 2em !important;
+      }
+      .ui.message h1.ui.header {
+        font-size: 4.5em;
+      }
+      .ui.message p.lead {
+        font-size: 1.3em;
+        color: #333333;
+        line-height: 1.4;
+        font-weight: 300;
+      }
+      */
+      .ui.footer.basic.segment,
+      footer {
+        padding: 0 0 2em 0;
+      }
+    </style>
+    <script>
+      $(document).ready(function() {
+        // hide and open menu on small screen
+        $('.ui.toggle.button').click(function() {
+          $('.mobile.tablet.only.row .ui.vertical.menu').toggle("250", "linear")
+        });
+      
+        // toggle right sidebar
+      //   $('.ui.right.sidebar').sidebar({
+      //     context: $('.pusher.segment'),
+      //     dimPage: false,
+      //     closeable: false
+      //   })
+      //   .sidebar('setting', 'transition', 'push')
+      //   .sidebar('attach events', '.ui.blue.button');
+      
+      //   // toggle left sidebar
+      //   $('.ui.left.sidebar').sidebar({
+      //     context: $('body')
+      //   })
+      //   .sidebar('setting', 'transition', 'scale down')
+      //   .sidebar('attach events', '.ui.green.button');
+      // });
+    </script>
+  </body>
+</html>

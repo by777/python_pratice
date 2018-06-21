@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"  lang="zh" charset="utf-8" ><!--<![endif]-->
+{% load staticfiles %}
+<head>
+
+        <!-- Basics -->
+        <meta charset="utf-8">
+       
+        <title>白七的博客 &#8211; 凡有所学 皆成性格</title>
+        
+       <link href="{%static 'favicon.icon'%}" rel="shortcut icon">
+        <link rel="stylesheet" type="text/css" href="{%static 'semantic.css'%}" media="screen">
+        <!-- Favicons -->
+       
+
+        <!-- Mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="{%static 'about/css/normalize.min.css'%}">
+        <link rel="stylesheet" href="{%static 'about/css/main.css'%}">
+
+        <!-- Fonts -->
+        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato:300,400,700'>
+
+    </head>
+    <body>   
+
+        <div class="wrapper">
+
+            <header>
+                <a class="menu-icon jiji">
+                    <span></span>
+                </a>
+                <nav class="menu visuallyhidden">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About me</a></li>
+                        <li><a href="#work">My Works</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        {%if boo_login == 'True'%}
+
+                        <li><a href="{%url 'blog:logout'%}">Logout</a></li>
+                        {% else %}
+                        <li><a href="{%url 'blog:login'%}">Login</a></li>
+                        {%endif%}
+                    </ul>
+                </nav>
+            </header>
+
+            <section id="home" class="row">
+                <div class="overlay">
+                    <div class="col home-title jiji">
+                        <h1>Hi, There</h1>
+                        <h2>CODER / WRITER / DESIGNER</h2>
+                        <a href="#work" target="_blank" class="but">Latest Work</a>
+                    </div>
+                </div>
+            </section>
+
+            <section id="about" class="row">
+                <div class="page about-content">
+                    <div class="col about-title">
+                        <h3
+                            data-100="-webkit-transform: translateX(100px); opacity:0;"
+                            data-500="-webkit-transform: translateX(0px); opacity:1;"
+                        >About me</h3>
+                    </div>
+                    <div class="col empty">&nbsp;</div>
+                    <div class="col about-description">
+                        <p
+                            data-100="opacity:0;"
+                            data-500="opacity:1;"
+                        ><p>I'm a graphic and designer,illustrator and front-end developer learner studying in university.</p>
+                                    <p>I have study at agencies and as a freelancer for the past year, but now creating and coding designs reponsively for the web. I love learn variety of frameworks, and try to write one by myself in the furture.</p>
+                                    <p>I am currently available for freelance web design and illustrative design. 
+                                    </p></p>
+                        <a href="#contact" class="but">Get in touch</a>
+                    </div>
+                    <div class="col empty">&nbsp;</div>
+                </div>
+            </section>
+
+            <section id="services" class="row">
+                <div class="services-content page">
+                    <div class="col services-design"
+                        data-600="-webkit-transform: translateY(10px); opacity:0;"
+                        data-800="-webkit-transform: translateY(0px); opacity:1;"
+                    >
+                        <span class="icon-design"></span>
+                        <ul>
+                            <li>UI / UX Design</li>
+                            <li>User Interface Design</li>
+                            <li>Interaction Design</li>
+                            <li>User Experience Thinking</li>
+                            <li>Prototyping</li>
+                            <li>Wireframing</li>
+                        </ul>
+                    </div>
+                    <div class="col services-frontend"
+                        data-600="-webkit-transform: translateY(50px); opacity:0;"
+                        data-800="-webkit-transform: translateY(0px); opacity:1;"
+                    >
+                        <span class="icon-computer"></span>
+                        <ul>
+                            <li>Frontend Development</li>
+                            <li>HTML5 / CSS3</li>
+                            <li>jQuery & JavaScript libraries</li>
+                            <li>Responsive Design</li>
+                            <li>Sass</li>
+                            <li>Git / SVN</li>
+                        </ul>
+                    </div>
+                    <div class="col services-team"
+                        data-600="-webkit-transform: translateY(100px); opacity:0;"
+                        data-800="-webkit-transform: translateY(0px); opacity:1;"
+                    >
+                        <span class="icon-music"></span>
+                        <ul>
+                            <li>Team Building</li>
+                            <li>Smiling</li>
+                            <li>Communication</li>
+                            <li>Team working</li>
+                            <li>Sharing my music</li>
+                            <li>...and more!</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="work" class="row">
+                <div class="work-content page">
+                    <div class="col work-title">
+                        <h3
+                            data-900="-webkit-transform: translateX(-100px); opacity:0;"
+                            data-1300="-webkit-transform: translateX(0px); opacity:1;"
+                        >My latest work</h3>
+                    </div>
+                    <div class="col empty">&nbsp;</div>
+                    <div class="col work-description">
+                        <p
+                            data-900="opacity:0;"
+                            data-1300="opacity:1;"
+                        >A selection of recent projects I've been working on: landing pages, websites, email marketing...</p>
+                    </div>
+                    <div class="col empty">&nbsp;</div>
+                </div>
+                <div class="work-examples page">
+                {% for article in articles %}
+                    <div class="col work-item"
+                        data-1300="opacity:0;"
+                        data-1400="opacity:1;"
+                    >
+                        <img src="{%static 'about/img/works/1.jpg'%}" alt="">
+                        <div class="work-item-inside">
+                            <div class="work-item-inside-content">
+                                <h4>{{article.title}}</h4>
+                                <a href="{% url 'blog:article_page' article.id %}" class="but">View details</a>
+                            </div>
+                        </div>
+                    </div>{%endfor%}
+
+                    <div class="col work-item"
+                        data-1300="opacity:0;"
+                        data-1400="opacity:1;"
+                    >
+                        <img src="{%static 'about/img/works/1.jpg'%}" alt="">
+                        <div class="work-item-inside">
+                            <div class="work-item-inside-content">
+                                <h4>新文章</h4>
+                                <a href="{% url 'blog:edit_page' 0 %}" class="but">Gedit new</a>
+                            </div>
+                        </div>
+                    </div>
+                             
+                </div>
+            </section>
+
+            <hr>
+
+            <section id="contact" class="row">
+                <div class="contact-content page">
+                    <div class="col contact-title">
+                        <h3
+                            data-100="-webkit-transform: translateX(100px); opacity:0;"
+                            data-500="-webkit-transform: translateX(0px); opacity:1;"
+                        >Get in touch</h3>
+                    </div>
+                    <div class="col empty">&nbsp;</div>
+                    <div class="col contact-description">
+                        <a href="#" class="but">vipors@vip.qq.com</a>
+                    </div>
+                    <div class="col empty">&nbsp;</div>
+                    <div class="col span_12 social">
+                        <a class="icon-twitter" href="#" target="_blank"></a>
+                        <a class="icon-github" href="#" target="_blank"></a>
+                        <a class="icon-instagram" href="#" target="_blank"></a>
+                        <a class="icon-linkedin" href="#" target="_blank"></a>
+                    </div>
+                </div>
+            </section>
+
+            <footer id="footer" class="row">
+                <div class="footer-content page">
+                    <div class="col f1">
+                        <p>COPYRIGHT©BAIQI 2017-2017</div> </p>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+
+        <div class="loader"></div>
+        
+        <!-- JavaScript -->
+        <script src="{%static 'about/js/jquery-1.11.0.min.js'%}"></script>
+        <script src="{%static 'about/js/modernizr-2.6.2.min.js'%}"></script>
+        <script src="{%static 'about/js/skrollr.js'%}"></script>
+        <script src="{%static 'about/js/main.js'%}"></script>
+
+    </body>
+
+</html>

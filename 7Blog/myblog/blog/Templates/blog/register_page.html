@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>register_page</title>
+</head>
+<body>
+这里是注册
+
+
+<form method="post" action="{%url 'blog:register_action'%}" name="register">
+{% csrf_token %} 
+<p>user_name:<input type="text" name="user_name"></p>
+<p>user_pwd:<input type="text" name="user_pwd"></p>
+<p><input type="submit" value="注册"></p>
+</form>
+</body>
+</html>

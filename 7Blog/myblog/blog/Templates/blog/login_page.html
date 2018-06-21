@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"  lang="zh" charset="utf-8" ><!--<![endif]-->
+{% load staticfiles %}
+<head>
+	<meta charset="UTF-8">
+	<title>Login - 白七的博客</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{%static 'style.css'%}" />
+	
+	<script type="text/javascript" src="{%static 'jquery-1.7.min.js'%}"></script>
+	<link href="{%static 'favicon.icon'%}" rel="shortcut icon">
+	
+       
+       
+       
+       
+        <!-- Favicons -->
+       
+
+        <!-- Mobile -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="{%static 'about/css/normalize.min.css'%}">
+        <link rel="stylesheet" href="{%static 'about/css/main.css'%}">
+
+        <!-- Fonts -->
+         <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato:300,400,700'>
+	
+</head>
+<body>
+	 <div class="wrapper">
+
+            <header>
+                <a class="menu-icon jiji">
+                    <span></span>
+                </a>
+                <nav class="menu visuallyhidden">
+                    <ul>
+                        <li><a href="{%url 'blog:index'%}">Home</a></li>
+                        <li><a href="javascript:history.back()">Reverse{{login_from}}</a></li>
+                        <li><a href="{%url 'blog:logout'%}">Logout</a></li>
+                    </ul>
+                </nav>
+            </header>
+
+            <section id="home" class="row">
+                <div class="overlay">
+                    <div class="lg-container" style="width:357px;height:315px;">
+					<br><h1>Admin Login</h1><br>
+					<form action="{%url 'blog:login_action'%}" id="lg-form" name="lg-form" method="post">
+			
+					<div>
+                        <label for="username">Username:</label>
+				<input type="text" name="user_name" id="username" placeholder="username" value="{{user_name}}" />
+                    </div>
+                    
+                    <div>
+                        <label for="password">Password:</label>
+				<input type="password" name="user_pwd" id="password" placeholder="password" />
+                    </div>
+                    	
+                    <div>				
+                        <button type="submit" id="login">Login</button>
+                    </div>
+                    {% csrf_token %} 
+                    
+                </form>
+                    <div id="message">{{login_error}}</div>
+                </div>
+                            </div>
+            </section>
+
+            
+
+           
+
+        </div>
+
+        <div class="loader"></div>
+
+
+
+
+
+	 <script src="{%static 'about/js/jquery-1.11.0.min.js'%}"></script>
+        <script src="{%static 'about/js/modernizr-2.6.2.min.js'%}"></script>
+        <script src="{%static 'about/js/skrollr.js'%}"></script>
+        <script src="{%static 'about/js/main.js'%}"></script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+﻿
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="zh" charset="utf-8" >
+<head>
+	<title>白七的博客 - 凡有所学 皆成性格</title>
+	<link rel="stylesheet" type="text/css" href="{%static 'semantic.css'%}" media="screen">
+	<link href="{%static 'favicon.icon'%}" rel="shortcut icon">
+	<!-- <script src="{%static 'jquery.min.js'%}"></script>
+	<script src="{%static 'semantic.min.js'%}"></script> -->
+	<!-- <link href="semantic.default.min.css" rel="stylesheet" type="text/css" /> -->
+    <!-- <link href="default.css" rel="stylesheet" type="text/css" /> -->
+	
+{% block head %}
+
+{% endblock %}
+
+</head>
+<body >
+<div class="ui fixed inverted  borderless huge  menu ">
+	<div class="dropdown item"><a href="{% url 'blog:index'  %}"><i class="home icon"></i>Home</a></div>
+	<div class="dropdown item"><a href="{% url 'blog:articles'  %}">Articles</a></div>
+	<div class="dropdown item"><a href="{% url 'blog:about'  %}">Other</a></div>
+
+	
+
+		<div class="ui simple  dropdown item"><!-- 一级菜单 -->
+			Login
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				<a class="item" href="{%url 'blog:login'%}">Login</a>
+				<a class="item" href="{%url 'blog:logout'%}">Logout</a>
+			</div>
+		</div>			
+
+	<div class="dropdown ui simple right align item">
+       
+
+
+<!-- 一级菜单 -->
+			 <div class="ui inverted" >{% block log %}初始化{% endblock %}</div>
+			<!-- <i class="dropdown icon"></i>向下的三角图标 -->
+			<div class="menu">
+				<a class="item" href="#">登陆状态</a>
+				
+			</div>
+			
+
+
+
+
+
+      
+      
+    </div>
+
+            
+       
+        </div>
+     
+</div>
+
+<div class="ui vertical basic segment ">
+	
+
+	<div class="ui image sixteen wide column">
+		<img src="{%static 'banner.jpg'%}" alt="banner" />
+	
+	</div>
+</div>
+{% block mainbody %}{% endblock %}

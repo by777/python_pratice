@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9bc4ca8-d1ee-4d96-a2cb-46ea0c099888" name="默认的" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/mnist_backward.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/mnist_forward.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/tfDemo01.py" afterPath="" />
-    </list>
+    <list default="true" id="e9bc4ca8-d1ee-4d96-a2cb-46ea0c099888" name="默认的" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

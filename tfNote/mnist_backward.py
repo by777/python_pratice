@@ -38,12 +38,30 @@ def backward(mnist):
         LEARNING_RATE_DECAY,
         staircase=True
     )
+    train_step = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(loss,gloal_step=gloal_step)
+    ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY,gloal_step)
+    ema_op = ema.apply(tf.trainable_variables())
 
+    with tf.control_dependencies([train_step,emp_op]):
+        train_op = tf.no_op(name='train')
+
+    saver = tf.train.Saver()
+
+    with tf.Session() as sess:
+        init_op = tf.global_variables_initializer()
+        sess.run(init_op)
+
+    for i in range(STEPS):
+        xs, ys = mnist.train.next_batch(BATCH_SIZE)
+        _, loss_value, step = sess.run([train_op,loss,gloal_step], feed_dict={x:xs,y_:ys})
+        if i % 1000 == 0:
+            print("After %d train steps, loss on training batch is %g." % (step,loss_value))
+            saver.save(sess,os.join(MODEL_SAVE_PATH,MODEL_NAME),global_step=p=gloal_step)
 
 def main():
-    mnist = input_data.read_data_sets(MNIST_PATH)
-    backward(mnist)
-    # train_step = tf.train.GradientDescentOptimizer(learning_rate)
+    mnist = input_data.read_data_sets(MNIST_PATH,one_hot=True)
+    backward()
+
 
 
 if __name__ == '__main__':

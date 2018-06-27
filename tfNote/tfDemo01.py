@@ -7,7 +7,7 @@ __date__ = '18/06/18'
 
 import tensorflow as tf
 import numpy as np
-''''
+
 八股：
 # ####################forward.py
 def forward(x,regularizer):
